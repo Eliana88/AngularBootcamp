@@ -7,11 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntradaComponent implements OnInit {
 
-  public mensaje: string = 'Soy un mensaje!';
+  mensaje: string = 'Soy un mensaje!';
+
+  valor1 : number = 134;
+  valor2 : number = 235;
+  valor3 : number = 345;
+  valor4 : number = 678;
+
+  contador: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  modificar(e){
+    let dato = e.target.value;
+    console.log('dato:', dato);
+    this.valor3= dato;
   }
 
 }

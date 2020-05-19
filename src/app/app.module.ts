@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { EntradaComponent } from './componentes/entrada/entrada.component';
 import { EstructuraComponent } from './componentes/estructura/estructura.component';
 import { AtributosComponent } from './componentes/atributos/atributos.component';
 import { FormulariosComponent } from './componentes/formularios/formularios.component';
+
+
 
 @NgModule({
   declarations: [
@@ -16,7 +20,8 @@ import { FormulariosComponent } from './componentes/formularios/formularios.comp
     FormulariosComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

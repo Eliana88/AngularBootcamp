@@ -5,3 +5,7 @@
 hr{
     background-color: #eee;
 }
+
+.table td, .table.th{
+    vertical-align: middle;
+}
