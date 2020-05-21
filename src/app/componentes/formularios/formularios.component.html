@@ -107,6 +107,10 @@
                     Se requiren como máximo {{ f.controls.nombre.errors.maxlength.requiredLength }} caracteres.
                     Tipeados: {{ f.controls.nombre.errors.maxlength.actualLength }} caracter(es)
                 </div>
+                <div *ngIf="f.controls.nombre.errors.conEspacios">
+                    <p>{{ f.controls.nombre.errors.conEspacios }}</p>
+                    No se aceptan espacios intermedios en este campo.
+                </div>
             </div>
             <!-- --------------------------------------- -->
         </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { VerificarEspacios } from 'src/app/validaciones/espacios.validators';
 
 @Component({
   selector: 'app-formularios',
@@ -26,7 +27,8 @@ export class FormulariosComponent implements OnInit {
       nombre : ['', Validators.compose([
         Validators.required,
         Validators.minLength(this.minimaCantidadCaracteresNombre),
-        Validators.maxLength(this.maximaCantidadCaracteresNombre)
+        Validators.maxLength(this.maximaCantidadCaracteresNombre),
+        VerificarEspacios
       ])],
       apellido : '',
       edad : '',
