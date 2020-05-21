@@ -1,3 +1,153 @@
 <div class="jumbotron">
     <h2>Formularios</h2>
+    <hr>
+
+    <h4><u>Template Driven</u></h4>
+    <br>
+
+    <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="enviar(loginForm)">
+        
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input
+                #nombre
+                #nombreControl="ngModel"
+                id="nombre" 
+                type="text" 
+                class="form-control" 
+                name="nombre"
+                [(ngModel)] = "formu.nombre"
+                minlength="3"
+                required
+            >
+            <!-- <div>{{ nombre.type }}</div> -->
+            <!-- <div>{{nombreControl.valid}}</div> -->
+            <div *ngIf="nombreControl.invalid && nombreControl.dirty" class="alert alert-danger mt-1">
+                <div *ngIf="nombreControl.errors.required">Campo requerido</div>
+                <div *ngIf="nombreControl.errors.minlength">Este campo debe poseer al menos 3 caracteres</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input
+                #apellidoControl="ngModel" 
+                id="apellido" 
+                type="text" 
+                class="form-control" 
+                name="apellido"
+                [(ngModel)] = "formu.apellido"
+                required
+            >
+            <div *ngIf="apellidoControl.invalid && apellidoControl.dirty" class="alert alert-danger mt-1">
+                Campo requerido
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="edad">Edad</label>
+            <input 
+                id="edad" 
+                type="number" 
+                class="form-control" 
+                name="edad"
+                [(ngModel)] = "formu.edad"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+                id="email" 
+                type="email" 
+                class="form-control" 
+                name="email"
+                [(ngModel)] = "formu.email"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+                id="password" 
+                type="password" 
+                class="form-control" 
+                name="password"
+                [(ngModel)] = "formu.password"
+                required
+            >
+        </div>
+
+        <button class="btn btn-success my-3" [disabled]="loginForm.invalid">Enviar</button>
+
+    </form>
+
+    <hr>
+
+    <h4><u>Reactive Forms</u></h4>
+    <br>
+
+    <form [formGroup]="f" autocomplete="off">
+
+        <div class="form-group">
+            <label for="nombre-rf">Nombre</label>
+            <input type="text" id="nombre-rf" class="form-control" formControlName="nombre">
+            <!-- --------------------------------------- -->
+            <!-- MENSAJES DE VALIDACIÓN DEL CAMPO NOMBRE -->
+            <!-- --------------------------------------- -->
+            <div *ngIf="f.controls.nombre.errors && f.controls.nombre.dirty" class="alert alert-info mt-1">
+                <div *ngIf="f.controls.nombre.errors.required">Campo requerido</div>
+                <div *ngIf="f.controls.nombre.errors.minlength">
+                    Se require al menos {{ f.controls.nombre.errors.minlength.requiredLength }} caracteres.
+                    Tipeados: {{ f.controls.nombre.errors.minlength.actualLength }} caracter(es)
+                </div>
+                <div *ngIf="f.controls.nombre.errors.maxlength">
+                    Se requiren como máximo {{ f.controls.nombre.errors.maxlength.requiredLength }} caracteres.
+                    Tipeados: {{ f.controls.nombre.errors.maxlength.actualLength }} caracter(es)
+                </div>
+            </div>
+            <!-- --------------------------------------- -->
+        </div>
+
+        <div class="form-group">
+            <label for="apellido-rf">Apellido</label>
+            <input type="text" id="apellido-rf" class="form-control" formControlName="apellido">
+        </div>
+
+        <div class="form-group">
+            <label for="edad-rf">Edad</label>
+            <input type="number" id="edad-rf" class="form-control" formControlName="edad">
+        </div>
+
+        <div formGroupName="contacto">
+            <div class="form-group">
+                <label for="email-rf">Email</label>
+                <input type="email" id="email-rf" class="form-control" formControlName="email">
+            </div>
+
+            <div class="form-group">
+                <label for="telefono-rf">Telefono</label>
+                <input type="tel" id="telefono-rf" class="form-control" formControlName="telefono">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="password-rf">Password</label>
+            <input type="password" id="password-rf" class="form-control" formControlName="password">
+        </div>
+
+        <button class="btn btn-success my-3" [disabled]="f.invalid" (click)="enviar_rf()">Enviar</button>
+    </form>
+
+    <hr>
+    <h5>Error del campo nombre en el Reactive Form</h5>
+    <pre><p>{{ f.controls.nombre.errors | json }}</p></pre>
+
+    <hr>
+    <h5>Datos del Reactive Form</h5>
+    <pre><p>{{ f.value | json }}</p></pre>
+
+
 </div>
